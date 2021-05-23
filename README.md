@@ -11,6 +11,7 @@ NOTE: This was my first time using a few technologies here (Bottle, SSE, Gevent)
 ## What's not included
 - Any routing logic
 - Auth
+- Tests
 - invalidating SSE connections as new high-load chatrooms are requested (HTTP/1.1 has very low limits on active connections, but HTTP/2 solves this issue)
 - the low volume solution with websockets
 - switchover logic to go from low volume to high volume and back

@@ -13,7 +13,7 @@ NOTE: This was my first time using a few technologies here (Bottle, SSE, Gevent)
 - Auth
 - invalidating SSE connections as new high-load chatrooms are requested (HTTP/1.1 has very low limits on active connections, but HTTP/2 solves this issue)
 - the low volume solution with websockets
-- switchover logic to go from low volume to high volume
+- switchover logic to go from low volume to high volume and back
 - cleaning up kafka topics when no longer needed (there's a very real limit to partitions in a cluster due to zookeeper [that will go away soon](https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/#scaling-up) when kafka ditches ZK)
 - etc.
 

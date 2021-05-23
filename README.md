@@ -16,6 +16,7 @@ NOTE: This was my first time using a few technologies here (Bottle, SSE, Gevent)
 - the low volume solution with websockets
 - switchover logic to go from low volume to high volume and back
 - cleaning up kafka topics when no longer needed (there's a very real limit to partitions in a cluster due to zookeeper [that will go away soon](https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/#scaling-up) when kafka ditches ZK)
+- Any serious consideration of productizing this specific version
 - etc.
 
 

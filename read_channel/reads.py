@@ -19,16 +19,14 @@ KAFKA_BROKERS = os.getenv("KAFKA_BROKERS")
 BOTTLE_HOST = os.getenv("BOTTLE_HOST", "localhost")
 BOTTLE_PORT = os.getenv("BOTTLE_PORT", 8081)
 
-# FIXME: decode lambda for consumer
-
 @get('/receive/<chatroom_id>')
 def consume(chatroom_id):
-    # Server Sent Events (SSE) largely borrowed from https://gist.github.com/werediver/4358735
+    # Server Sent Events (SSE) with bottle. Guided by https://gist.github.com/werediver/4358735
     response.content_type  = 'text/event-stream'
     response.cache_control = 'no-cache'
 
-    # we could source the chatroom_ids from the query string or have some smarts about where this consumer is if we wanted to monitor more than one channel like this
-    # we could consume from a specific offset if we use the confluent library, but you know, proof of concept liberties and all!
+    # We could source the chatroom_ids from the query string or have some smarts about where this consumer is if we wanted to monitor more than one channel like this
+    # We could consume from a specific offset if we use the confluent library, but you know, proof of concept liberties and all!
     consumer = KafkaConsumer(chatroom_id, bootstrap_servers=KAFKA_BROKERS.split(','))
     for message in consumer:
         yield f"[{message.key.decode('utf-8')}]: {message.value.decode('utf-8')}\n" 
